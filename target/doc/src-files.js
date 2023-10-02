@@ -1,0 +1,20 @@
+var srcIndex = JSON.parse('{\
+"api_server_rest":["",[["ttrpc_proto",[],["attestation_agent.rs","attestation_agent_ttrpc.rs","confidential_data_hub.rs","confidential_data_hub_ttrpc.rs","mod.rs"]]],["aa.rs","cdh.rs","main.rs","router.rs","utils.rs"]],\
+"attestation_agent":["",[["rpc",[["attestation",[],["mod.rs"]],["getresource",[],["mod.rs"]],["keyprovider",[],["message.rs","mod.rs"]],["ttrpc_protocol",[],["attestation_agent.rs","attestation_agent_ttrpc.rs","getresource.rs","getresource_ttrpc.rs","keyprovider.rs","keyprovider_ttrpc.rs","mod.rs"]]],["mod.rs"]]],["main.rs","ttrpc.rs"]],\
+"attester":["",[["az_snp_vtpm",[],["mod.rs"]],["cca",[],["mod.rs"]],["csv",[],["mod.rs"]],["sample",[],["mod.rs"]],["sgx_dcap",[],["mod.rs"]],["snp",[],["mod.rs"]],["tdx",[],["mod.rs"]]],["lib.rs"]],\
+"coco_keyprovider":["",[["enc_mods",[],["crypto.rs","kbs.rs","mod.rs"]],["grpc",[["protocol",[],["keyprovider_structs.rs","mod.rs"]]],["mod.rs"]]],["main.rs"]],\
+"confidential_data_hub":["",[["auth",[],["kbs.rs","mod.rs"]]],["api.rs","error.rs","hub.rs","lib.rs"]],\
+"crypto":["",[["native",[],["aes256ctr.rs","aes256gcm.rs","mod.rs","rsa.rs"]]],["asymmetric.rs","lib.rs","symmetric.rs"]],\
+"image_rs":["",[["auth",[],["auth_config.rs","mod.rs"]],["decoder",[],["mod.rs"]],["resource",[],["mod.rs"]],["signature",[["image",[],["digest.rs","mod.rs"]],["mechanism",[["cosign",[],["mod.rs"]],["simple",[],["mod.rs"]]],["mod.rs"]],["payload",[],["mod.rs","simple_signing.rs"]],["policy",[],["mod.rs","policy_requirement.rs","ref_match.rs"]]],["mod.rs"]],["snapshots",[],["mod.rs","overlay.rs"]]],["bundle.rs","config.rs","decrypt.rs","digest.rs","image.rs","lib.rs","meta_store.rs","pull.rs","stream.rs","unpack.rs"]],\
+"kbc":["",[["sample_kbc",[],["mod.rs"]]],["annotation_packet.rs","lib.rs"]],\
+"kbs_protocol":["",[["client",[],["mod.rs","rcar_client.rs","token_client.rs"]],["evidence_provider",[],["mock.rs","mod.rs","native.rs"]],["token_provider",[["aa",[],["attestation_agent.rs","attestation_agent_ttrpc.rs","mod.rs"]]],["mod.rs","test.rs"]]],["api.rs","builder.rs","error.rs","keypair.rs","lib.rs"]],\
+"kms":["",[["plugins",[["aliyun",[],["annotations.rs","client.rs","credential.rs","mod.rs"]],["kbs",[],["cc_kbc.rs","mod.rs","offline_fs.rs"]]],["mod.rs"]]],["api.rs","error.rs","lib.rs"]],\
+"ocicrypt_rs":["",[["blockcipher",[],["aes_ctr.rs","mod.rs","rand.rs"]],["keywrap",[],["jwe.rs","keyprovider.rs","mod.rs"]],["utils",[["grpc",[],["keyprovider.rs","mod.rs"]]],["mod.rs","runner.rs"]]],["config.rs","encryption.rs","helpers.rs","lib.rs","spec.rs"]],\
+"resource_uri":["",[],["lib.rs"]],\
+"secret":["",[["secret",[["layout",[],["envelope.rs","mod.rs","vault.rs"]]],["mod.rs"]]],["error.rs","lib.rs"]],\
+"secret_cli":["",[],["secret_cli.rs"]],\
+"sev":["",[],["lib.rs"]],\
+"test_binaries":["",[],["lib.rs"]],\
+"test_utils":["",[],["lib.rs"]]\
+}');
+createSrcSidebar();

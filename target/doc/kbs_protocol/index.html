@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The Client of KBS RCAR Protocol."><title>kbs_protocol - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="kbs_protocol" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.0-nightly (e7c502d93 2023-09-27)" data-channel="nightly" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../kbs_protocol/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a></nav><nav class="sidebar"><a class="logo-container" href="../kbs_protocol/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Crate kbs_protocol</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 0.1.0</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">kbs_protocol</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../src/kbs_protocol/lib.rs.html#6-85">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="the-client-of-kbs-rcar-protocol"><a href="#the-client-of-kbs-rcar-protocol">The Client of KBS RCAR Protocol.</a></h2>
+<p>This crate implements the client of a KBS RCAR Protocol, s.t. KBS Client.</p>
+<h3 id="protocol"><a href="#protocol">Protocol</a></h3>
+<p>Please refer to <a href="https://github.com/confidential-containers/kbs/blob/main/docs/kbs_attestation_protocol.md">https://github.com/confidential-containers/kbs/blob/main/docs/kbs_attestation_protocol.md</a></p>
+<h3 id="usage"><a href="#usage">Usage</a></h3>
+<p>This crate supports two basic usages due to the <a href="https://datatracker.ietf.org/doc/rfc9334/">RATS model</a>.</p>
+<ul>
+<li>Background-Check Model</li>
+<li>Passport Model</li>
+</ul>
+<h4 id="background-check-model"><a href="#background-check-model">Background-Check Model</a></h4>
+<p>In this model the request from the client for a resources is coupled with a
+remote attestation process. An EvidenceProvider is needed to perform the
+underlying RCAR handshake.</p>
+<p>Note: feature <code>background_check</code> must be enabled.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>kbs_protocol::KbsClientBuilder;
+<span class="kw">use </span>kbs_protocol::evidence_provider::NativeEvidenceProvider;
+<span class="kw">use </span>kbs_protocol::KbsClientCapabilities;
+
+<span class="kw">async fn </span>background_check() {
+    <span class="kw">let </span>evidence_provider = Box::new(NativeEvidenceProvider::new().unwrap());
+    <span class="kw">let </span><span class="kw-2">mut </span>client = KbsClientBuilder::with_evidence_provider(evidence_provider, <span class="string">&quot;http://example.kbs.io&quot;</span>)
+        .build()
+        .unwrap();
+
+    <span class="comment">// the get_resource call will perform attestation
+    </span><span class="kw">let </span>resource = client.get_resource(<span class="string">&quot;kbs:///default/key/1&quot;</span>.try_into().unwrap()).<span class="kw">await</span>.unwrap();
+
+    <span class="comment">// the client can also generate a token
+    </span><span class="kw">let </span>(token, tee_key) = client.get_token().<span class="kw">await</span>.unwrap();
+}</code></pre></div>
+<h4 id="passport-model"><a href="#passport-model">Passport Model</a></h4>
+<p>Passport Model allows us to use a token provisioned by KBS to finish authentication.
+The token certifies a tee key pair. The token and the tee keypair can be provided
+by a TokenProvider.</p>
+<p>Note: feature <code>passport</code> must be enabled.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>kbs_protocol::KbsClientBuilder;
+<span class="kw">use </span>kbs_protocol::KbsClientCapabilities;
+<span class="kw">use </span>kbs_protocol::token_provider::TestTokenProvider;
+
+<span class="kw">async fn </span>passport() {
+    <span class="kw">let </span>token_provider = Box::&lt;TestTokenProvider&gt;::default();
+    <span class="kw">let </span><span class="kw-2">mut </span>client = KbsClientBuilder::with_token_provider(token_provider, <span class="string">&quot;http://example.kbs.io&quot;</span>)
+        .build()
+        .unwrap();
+
+    <span class="kw">let </span>resource = client.get_resource(<span class="string">&quot;kbs:///default/key/1&quot;</span>.try_into().unwrap()).<span class="kw">await</span>.unwrap();
+}</code></pre></div>
+<p>Note: everytime the token is found expired, the client will call the
+<code>token_provider</code> to retrieve a new token.</p>
+</div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2><ul class="item-table"><li><div class="item-name" id="reexport.KbsClientBuilder"><code>pub use builder::<a class="struct" href="builder/struct.KbsClientBuilder.html" title="struct kbs_protocol::builder::KbsClientBuilder">KbsClientBuilder</a>;</code></div></li><li><div class="item-name" id="reexport.Error"><code>pub use error::<a class="enum" href="error/enum.Error.html" title="enum kbs_protocol::error::Error">Error</a>;</code></div></li><li><div class="item-name" id="reexport.Result"><code>pub use error::<a class="type" href="error/type.Result.html" title="type kbs_protocol::error::Result">Result</a>;</code></div></li><li><div class="item-name" id="reexport.TeeKeyPair"><code>pub use keypair::<a class="struct" href="keypair/struct.TeeKeyPair.html" title="struct kbs_protocol::keypair::TeeKeyPair">TeeKeyPair</a>;</code></div></li><li><div class="item-name" id="reexport.Token"><code>pub use token_provider::<a class="struct" href="token_provider/struct.Token.html" title="struct kbs_protocol::token_provider::Token">Token</a>;</code></div></li><li><div class="item-name"><code>pub use <a class="mod" href="api/index.html" title="mod kbs_protocol::api">api</a>::*;</code></div></li></ul><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="api/index.html" title="mod kbs_protocol::api">api</a></div></li><li><div class="item-name"><a class="mod" href="builder/index.html" title="mod kbs_protocol::builder">builder</a></div></li><li><div class="item-name"><a class="mod" href="client/index.html" title="mod kbs_protocol::client">client</a></div><div class="desc docblock-short">KBS Clients</div></li><li><div class="item-name"><a class="mod" href="error/index.html" title="mod kbs_protocol::error">error</a></div></li><li><div class="item-name"><a class="mod" href="evidence_provider/index.html" title="mod kbs_protocol::evidence_provider">evidence_provider</a></div></li><li><div class="item-name"><a class="mod" href="keypair/index.html" title="mod kbs_protocol::keypair">keypair</a></div></li><li><div class="item-name"><a class="mod" href="token_provider/index.html" title="mod kbs_protocol::token_provider">token_provider</a></div></li></ul></section></div></main></body></html>

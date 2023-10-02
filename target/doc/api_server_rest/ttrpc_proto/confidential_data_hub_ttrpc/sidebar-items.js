@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["create_get_resource_service"],"struct":["GetResourceMethod","GetResourceServiceClient"],"trait":["GetResourceService"]};

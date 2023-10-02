@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["DEFAULT_KEY_REPO_PATH","HARD_CODED_KEYID","KBS_RESOURCE_URL_PREFIX"],"fn":["enc_optsdata_gen_anno","generate_key_parameters","normalize_path","parse_input_params"],"mod":["crypto","kbs"],"struct":["AnnotationPacket","InputParams"]};

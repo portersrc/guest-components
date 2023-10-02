@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["allows_image"],"mod":["image","mechanism","payload","policy"]};

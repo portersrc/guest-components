@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["ERR_ANNOTATION_NOT_BASE64","ERR_DC_EMPTY","ERR_KBC_KBS_NOT_BASE64","ERR_KBC_KBS_NOT_FOUND","ERR_NO_KBC_NAME","ERR_NO_KBS_URI","ERR_WRONG_DC_PARAM","KBC_KBS_PAIR_SEP"],"fn":["get_annotation","get_kbc_kbs_pair","str_to_kbc_kbs"],"mod":["message","ttrpc"],"struct":["InputPayload","KeyProvider"]};

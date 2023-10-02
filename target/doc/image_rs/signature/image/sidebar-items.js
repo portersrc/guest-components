@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["TransportName"],"fn":["get_image_namespaces","get_image_repository_full_name"],"mod":["digest"],"struct":["Image"]};

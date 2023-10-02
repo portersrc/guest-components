@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["KBS_URL_PATH_PREFIX"],"fn":["register_kek"]};

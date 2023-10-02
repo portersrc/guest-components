@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["AES256CTR"],"enum":["LayerBlockCipherHandler"],"struct":["LayerBlockCipherOptions","PrivateLayerBlockCipherOptions","PublicLayerBlockCipherOptions"],"trait":["EncryptionFinalizer","LayerBlockCipher"],"type":["LayerCipherType"]};

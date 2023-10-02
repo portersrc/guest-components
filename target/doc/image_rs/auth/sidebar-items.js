@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["RESOURCE_DESCRIPTION"],"fn":["credential_for_reference"],"mod":["auth_config"],"struct":["DockerAuthConfig","DockerConfigFile"]};

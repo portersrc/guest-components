@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Cli","EnvelopeArgs","TypeArgs"],"fn":["handle_envelope_provider","main"],"struct":["AliProviderArgs","EnvelopeCommand","SealArgs"]};

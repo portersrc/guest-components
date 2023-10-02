@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["create_attestation_agent_service"],"struct":["AttestationAgentServiceClient","GetEvidenceMethod","GetTokenMethod"],"trait":["AttestationAgentService"]};

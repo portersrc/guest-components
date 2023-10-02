@@ -1,0 +1,4 @@
+(function() {var implementors = {
+"image_rs":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/convert/trait.From.html\" title=\"trait core::convert::From\">From</a>&lt;SimpleSigning&gt; for <a class=\"struct\" href=\"image_rs/signature/payload/simple_signing/struct.SigPayload.html\" title=\"struct image_rs::signature::payload::simple_signing::SigPayload\">SigPayload</a>"]],
+"resource_uri":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/convert/trait.From.html\" title=\"trait core::convert::From\">From</a>&lt;<a class=\"struct\" href=\"resource_uri/struct.ResourceUri.html\" title=\"struct resource_uri::ResourceUri\">ResourceUri</a>&gt; for <a class=\"struct\" href=\"https://docs.rs/url/2.4.1/url/struct.Url.html\" title=\"struct url::Url\">Url</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

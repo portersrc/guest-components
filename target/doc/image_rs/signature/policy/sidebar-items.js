@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ErrorInfo"],"mod":["policy_requirement","ref_match"],"struct":["Policy"],"type":["PolicyTransportScopes"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["SnapshotType"],"mod":["overlay"],"struct":["MountPoint"],"trait":["Snapshotter"]};

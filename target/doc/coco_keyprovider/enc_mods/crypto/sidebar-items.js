@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["HARDCODED_KEY"],"enum":["Algorithm"],"fn":["encrypt"]};

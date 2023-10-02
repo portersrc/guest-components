@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["OCICRYPT_ENVVARNAME"],"struct":["Command","CryptoConfig","DecryptConfig","EncryptConfig","KeyProviderAttrs","OcicryptConfig"]};

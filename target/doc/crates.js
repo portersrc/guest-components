@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["api_server_rest","attestation_agent","attester","coco_keyprovider","confidential_data_hub","crypto","image_rs","kbc","kbs_protocol","kms","ocicrypt_rs","resource_uri","secret","secret_cli","sev","test_binaries","test_utils"];

@@ -1,0 +1,3 @@
+(function() {var implementors = {
+"image_rs":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html\" title=\"trait core::hash::Hash\">Hash</a> for <a class=\"enum\" href=\"image_rs/snapshots/enum.SnapshotType.html\" title=\"enum image_rs::snapshots::SnapshotType\">SnapshotType</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

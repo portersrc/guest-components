@@ -1,0 +1,3 @@
+(function() {var implementors = {
+"secret_cli":[["impl Subcommand for <a class=\"enum\" href=\"secret_cli/enum.TypeArgs.html\" title=\"enum secret_cli::TypeArgs\">TypeArgs</a>"],["impl Subcommand for <a class=\"enum\" href=\"secret_cli/enum.Cli.html\" title=\"enum secret_cli::Cli\">Cli</a>"],["impl Subcommand for <a class=\"enum\" href=\"secret_cli/enum.EnvelopeArgs.html\" title=\"enum secret_cli::EnvelopeArgs\">EnvelopeArgs</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
