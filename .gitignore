@@ -4,3 +4,5 @@
 
 image-rs/scripts/attestation-agent
 shell.nix
+
+*.swp
