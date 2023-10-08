@@ -1,4 +1,4 @@
 APIs
 ====
 
-`image-rs <../apis/image_rs/index.html>`_
+`image-rs <../../../apis/image_rs/index.html>`_
