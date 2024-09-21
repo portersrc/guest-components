@@ -8,7 +8,7 @@ use std::time::Duration;
 use anyhow::{bail, Context};
 use async_trait::async_trait;
 use kbs_types::{Attestation, Challenge, ErrorInformation, Request, Response, Tee};
-use log::{debug, warn};
+use log::{debug, info, warn};
 use resource_uri::ResourceUri;
 use serde::Deserialize;
 use serde_json::json;
@@ -90,6 +90,7 @@ impl KbsClient<Box<dyn EvidenceProvider>> {
     /// Note: if RCAR succeeds, the http client will record the cookie with the kbs server,
     /// which means that this client can be then used to retrieve resources.
     async fn rcar_handshake(&mut self) -> anyhow::Result<()> {
+        info!("porter-query rcar_handshake");
         let auth_endpoint = format!("{}/{KBS_PREFIX}/auth", self.kbs_host_url);
 
         let tee = match &self._tee {
@@ -216,6 +217,7 @@ impl KbsClient<Box<dyn EvidenceProvider>> {
 #[async_trait]
 impl KbsClientCapabilities for KbsClient<Box<dyn EvidenceProvider>> {
     async fn get_resource(&mut self, resource_uri: ResourceUri) -> Result<Vec<u8>> {
+        info!("porter-query get_resource");
         let mut remote_url = format!(
             "{}/{KBS_PREFIX}/resource/{}/{}/{}",
             self.kbs_host_url, resource_uri.repository, resource_uri.r#type, resource_uri.tag

@@ -53,6 +53,7 @@ impl CcKbc {
 #[async_trait]
 impl Kbc for CcKbc {
     async fn get_resource(&mut self, rid: ResourceUri) -> Result<Vec<u8>> {
+        info!("porter cckbc get_resource");
         let secret = self
             .client
             .get_resource(rid)
