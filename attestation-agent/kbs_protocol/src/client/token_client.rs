@@ -5,7 +5,7 @@
 
 use async_trait::async_trait;
 use kbs_types::{ErrorInformation, Response};
-use log::{debug, warn};
+use log::{debug, info, warn};
 use resource_uri::ResourceUri;
 
 use crate::{
@@ -31,6 +31,7 @@ impl KbsClient<Box<dyn TokenProvider>> {
 #[async_trait]
 impl KbsClientCapabilities for KbsClient<Box<dyn TokenProvider>> {
     async fn get_resource(&mut self, resource_uri: ResourceUri) -> Result<Vec<u8>> {
+        info!("porter-query get-resource token-provider");
         let mut remote_url = format!(
             "{}/{KBS_PREFIX}/resource/{}/{}/{}",
             self.kbs_host_url, resource_uri.repository, resource_uri.r#type, resource_uri.tag

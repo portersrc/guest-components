@@ -10,6 +10,7 @@ use std::path::PathBuf;
 
 use kms::{plugins::kbs::KbcClient, Annotations, Getter};
 use log::debug;
+use log::info;
 use tokio::fs;
 
 use crate::{hub::Hub, Error, Result};
@@ -20,6 +21,7 @@ pub const KBS_RESOURCE_STORAGE_DIR: &str = "/run/confidential-containers/cdh";
 
 impl Hub {
     pub(crate) async fn init_kbs_resources(&self) -> Result<()> {
+        info!("porter3 init kbs resources");
         // check the validity of the credential paths.
         for k in self.credentials.keys() {
             if !is_path_valid(k) {

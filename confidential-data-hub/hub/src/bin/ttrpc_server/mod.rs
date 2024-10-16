@@ -9,7 +9,7 @@ use anyhow::Result;
 use async_trait::async_trait;
 use confidential_data_hub::{hub::Hub, DataHub};
 use lazy_static::lazy_static;
-use log::{debug, error};
+use log::{debug, error, info};
 use storage::volume_type::Storage;
 use tokio::sync::RwLock;
 use ttrpc::{asynchronous::TtrpcContext, Code, Error, Status};
@@ -20,9 +20,12 @@ use crate::{
     protos::{
         api::{
             GetResourceRequest, GetResourceResponse, SecureMountRequest, SecureMountResponse,
-            UnsealSecretInput, UnsealSecretOutput,
+            SetUpEncryptedMeshRequest, SetUpEncryptedMeshResponse, UnsealSecretInput,
+            UnsealSecretOutput,
         },
-        api_ttrpc::{GetResourceService, SealedSecretService, SecureMountService},
+        api_ttrpc::{
+            EncryptedMeshService, GetResourceService, SealedSecretService, SecureMountService,
+        },
         keyprovider::{KeyProviderKeyWrapProtocolInput, KeyProviderKeyWrapProtocolOutput},
         keyprovider_ttrpc::KeyProviderService,
     },
@@ -36,6 +39,7 @@ pub struct Server;
 
 impl Server {
     async fn init(credentials: &HashMap<String, String>) -> Result<()> {
+        info!("porter3 Server::init");
         let mut writer = HUB.write().await;
         if writer.is_none() {
             let hub = Hub::new(credentials.to_owned()).await?;
@@ -46,6 +50,7 @@ impl Server {
     }
 
     pub async fn new(credentials: &HashMap<String, String>) -> Result<Self> {
+        info!("porter3 Server::new");
         Self::init(credentials).await?;
         Ok(Self)
     }
@@ -191,6 +196,37 @@ impl SecureMountService for Server {
         let mut reply = SecureMountResponse::new();
         reply.mount_path = resource;
         debug!("[ttRPC CDH] secure mount succeeded.");
+        Ok(reply)
+    }
+}
+
+#[async_trait]
+impl EncryptedMeshService for Server {
+    async fn set_up_encrypted_mesh(
+        &self,
+        _ctx: &TtrpcContext,
+        req: SetUpEncryptedMeshRequest,
+    ) -> ::ttrpc::Result<SetUpEncryptedMeshResponse> {
+        info!("porter ttrpc_server/mod.rs set-up-encrypted-mesh");
+        debug!("[ttRPC CDH] Set up encrypted mesh request");
+        let reader = HUB.read().await;
+        let reader = reader.as_ref().expect("must be initialized");
+        let _resource = reader
+            .set_up_encrypted_mesh(req.pod_name, req.lighthouse_pub_ip)
+            .await
+            .map_err(|e| {
+                let detailed_error = format_error!(e);
+                error!("[ttRPC CDH] Set Up Encrypted Mesh:\n{detailed_error}");
+                let mut status = Status::new();
+                status.set_code(Code::INTERNAL);
+                status.set_message("[CDH] [ERROR]: set up encryptd mesh failed".to_string());
+                Error::RpcStatus(status)
+            })?;
+
+        let reply = SetUpEncryptedMeshResponse::new();
+        //reply.hello_response_fixme = resource;
+        debug!("[ttRPC CDH] setup encrypted mesh succeeded.");
+        info!("porter setup-encrypted-mesh succeeded");
         Ok(reply)
     }
 }

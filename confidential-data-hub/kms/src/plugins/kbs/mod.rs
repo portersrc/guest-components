@@ -18,6 +18,7 @@ use std::{env, sync::Arc};
 use async_trait::async_trait;
 use attestation_agent::config::aa_kbc_params::AaKbcParams;
 use lazy_static::lazy_static;
+use log::info;
 pub use resource_uri::ResourceUri;
 use tokio::sync::Mutex;
 
@@ -71,6 +72,7 @@ pub struct KbcClient;
 #[async_trait]
 impl Getter for KbcClient {
     async fn get_secret(&self, name: &str, _annotations: &Annotations) -> Result<Vec<u8>> {
+        info!("porter get_secret");
         let resource_uri = ResourceUri::try_from(name)
             .map_err(|_| Error::KbsClientError(format!("illegal kbs resource uri: {name}")))?;
         let real_client = KBS_CLIENT.clone();

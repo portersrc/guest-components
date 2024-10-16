@@ -11,7 +11,10 @@ use base64::{engine::general_purpose::STANDARD, Engine};
 use clap::{Args, Parser, Subcommand};
 use protos::{
     api::*,
-    api_ttrpc::{GetResourceServiceClient, SealedSecretServiceClient, SecureMountServiceClient},
+    api_ttrpc::{
+        EncryptedMeshServiceClient, GetResourceServiceClient, SealedSecretServiceClient,
+        SecureMountServiceClient,
+    },
     keyprovider::*,
     keyprovider_ttrpc::KeyProviderServiceClient,
 };
@@ -53,6 +56,9 @@ enum Operation {
 
     /// Secure mount
     SecureMount(SecureMountArgs),
+
+    /// Set up an encrypted mesh
+    SetUpEncryptedMesh(SetUpEncryptedMeshArgs),
 }
 
 #[derive(Args)]
@@ -87,9 +93,40 @@ struct SecureMountArgs {
     storage_path: String,
 }
 
+#[derive(Debug, Args)]
+#[command(author, version, about, long_about = None)]
+struct SetUpEncryptedMeshArgs {
+    /// FIXME some arg to set up the encrypted mesh
+    #[arg(short, long)]
+    hello_world_fixme: String,
+}
+
 #[tokio::main]
 async fn main() {
     let args = Cli::parse();
+    /*match args.operation {
+        Operation::UnsealSecret(arg) => {
+            println!("hello 1");
+            //let secret = tokio::fs::read(arg.secret_path).await.expect("read file");
+            //println!("the secret is: {:?}", secret);
+        }
+        Operation::UnwrapKey(arg) => {
+            println!("hello 2");
+        }
+        Operation::GetResource(arg) => {
+            println!("hello 3");
+        }
+        Operation::SecureMount(arg) => {
+            println!("hello 4");
+        }
+        Operation::SetUpEncryptedMesh(arg) => {
+            println!("hello world");
+            println!("the arg is: {:?}", arg);
+            println!("the arg.hello_world_fixme is: {:?}", arg.hello_world_fixme);
+            //let the_string = tokio::fs::read(arg.hello_world_fixme).await.expect("read file");
+            //println!("The string: {:?}", the_string);
+        }
+    }*/
     let inner = ttrpc::asynchronous::Client::connect(&args.socket).expect("connect ttrpc socket");
 
     match args.operation {
@@ -153,6 +190,22 @@ async fn main() {
                 .await
                 .expect("request to CDH");
             println!("mount path: {}", res.mount_path);
+        }
+        Operation::SetUpEncryptedMesh(arg) => {
+            println!("porter invoking the ttrpc tool's SetUpEncryptedMesh operation");
+            let client = EncryptedMeshServiceClient::new(inner);
+            //let the_string = arg.hello_world_fixme;
+            //println!("The string: {:?}", the_string);
+
+            let req = SetUpEncryptedMeshRequest {
+                //hello_request_fixme: the_string,
+                ..Default::default()
+            };
+            let res = client
+                .set_up_encrypted_mesh(context::with_timeout(args.timeout * NANO_PER_SECOND), &req)
+                .await
+                .expect("request to CDH");
+            println!("porter success");
         }
     }
 }
